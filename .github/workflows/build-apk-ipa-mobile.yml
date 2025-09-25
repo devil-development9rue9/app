@@ -225,19 +225,17 @@ jobs:
 
     - name: Install Python Dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-
+        pip install flet
     - name: Setup Flutter 3.7.0
       uses: subosito/flutter-action@v2
       with:
-        flutter-version: 3.7.0
+        flutter-version: '3.27.0'
         channel: 'stable'
 
     - name: Flet Build IPA
       run: |
         flutter config --no-analytics
-        flet build ipa --verbose --build-number=$BUILD_NUMBER --build-version=$BUILD_VERSION 
+        flet build ipa --verbose
 
     - name: Upload IPA Artifact
       uses: actions/upload-artifact@v4.3.4
