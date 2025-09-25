@@ -20,7 +20,7 @@ env:
   BUILD_NUMBER: 1
   BUILD_VERSION: 1.0.0
   PYTHON_VERSION: 3.12.2
-  FLUTTER_VERSION: 3.7.0
+  FLUTTER_VERSION: 3.27.0
 
 jobs:
   build-linux:
@@ -218,7 +218,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Setup Python 3.7.0
+    - name: Setup Python 3.27.0
       uses: actions/setup-python@v5
       with:
         python-version: ${{ env.PYTHON_VERSION }}
@@ -226,15 +226,14 @@ jobs:
     - name: Install Python Dependencies
       run: |
         pip install flet
-    - name: Setup Flutter 3.7.0
+    - name: Setup Flutter 3.27.0
       uses: subosito/flutter-action@v2
       with:
         flutter-version: '3.27.0'
-        channel: 'stable'
 
     - name: Flet Build IPA
       run: |
-        flutter config --no-analytics
+        # flutter config --no-analytics
         flet build ipa --verbose
 
     - name: Upload IPA Artifact
